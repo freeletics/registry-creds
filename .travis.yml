@@ -9,5 +9,6 @@ services:
   - docker
 
 script:
+- go get github.com/upmc-enterprises/registry-creds/k8sutil
 - make test
 - make build

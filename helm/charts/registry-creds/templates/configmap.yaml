@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: registry-creds
+  namespace: kube-system
+  labels:
+    app: {{ template "registry-creds.name" . }}
+    chart: {{ template "registry-creds.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  DOCKER_PRIVATE_REGISTRY_SERVER: "{{ .Values.private.server }}"
+  DOCKER_PRIVATE_REGISTRY_USER: "{{ .Values.private.user }}"
+  DOCKER_PRIVATE_REGISTRY_PASSWORD: "{{ .Values.private.password }}"
+  AWS_ACCESS_KEY_ID: "{{ .Values.aws.access_key }}"
+  AWS_SECRET_ACCESS_KEY: "{{ .Values.aws.secret_key }}"
+  aws-account: "{{ .Values.aws.account }}"
+  aws-region: "{{ .Values.aws.region }}"
+  aws_assume_role: "{{ .Values.aws.role }}"
+  AWS_SESSION_TOKEN: "{{ .Values.aws.token }}"
